@@ -9,8 +9,8 @@
 	<div class="container">
 		<h1>{{"Welcome to this new app"}}</h1>
 		<p>{{msg}}</p>
-		<p>alpha={{alpha}} , beta={{beta}} , gamma={{gamma}} , absolute={{absolute}}</p>
-		<button ng-click="resetOrientation()">Reset</button>
+		<p>alpha={{orientation.alpha-oInit.alpha}} , beta={{orientation.beta-oInit.beta}} , gamma={{orientation.gamma-oInit.gamma}} , absolute={{orientation.absolute-oInit.absolute}}</p>
+		<button ng-click="newInit()">Reset</button>
 	</div>
 	</body>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
