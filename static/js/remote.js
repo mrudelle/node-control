@@ -1,9 +1,10 @@
 (function(){
 	var app = angular.module('nodeControlApp', [])
 
-	app.controller('appController', [ '$scope', '$window', function($scope, $window){
+	app.controller('appController', [ '$scope', '$window', '$http', function($scope, $window, $http){
 		
 		$scope.msg = "Hello, World"
+		$scope.err = null
 
 		$scope.orientation = {}
 		$scope.orientation.alpha = 0
@@ -15,7 +16,6 @@
 		$scope.oInit.beta = 0
 		$scope.oInit.gamma = 0
 		$scope.oInit.init = 1
-
 
 		$scope.newOrientation = function(event) {
 			$scope.orientation.beta = Math.trunc(event.beta)
@@ -30,6 +30,15 @@
 			}
 
 			$scope.$apply()
+
+			// send that new info to the server
+			$http.post('/someUrl', {msg:'hello word!'}).
+			success(function(data, status, headers, config) {
+				$scope.msg = "new orientation posted " + status
+			}).
+			error(function(data, status, headers, config) {
+				$scope.err = "Ouch that didn't go well " + status
+			});
 		};
 
 		$window.addEventListener("deviceorientation", $scope.newOrientation)

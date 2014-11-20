@@ -3,13 +3,43 @@
 	<title>Node Control</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<style type="text/css">
+		.progress-bar {
+			transition: none;
+		}
+	</style>
+
 </head>
 <body ng-controller="appController as main">
 
 	<div class="container">
 		<h1>{{"Welcome to this new app"}}</h1>
-		<p>{{msg}}</p>
-		<p>alpha={{orientation.alpha-oInit.alpha}} , beta={{orientation.beta-oInit.beta}} , gamma={{orientation.gamma-oInit.gamma}} , absolute={{orientation.absolute-oInit.absolute}}</p>
+
+		<div class="alert alert-success" >{{msg}}</div>
+		<div class="alert alert-danger" ng-show="err">{{err}}</div> 
+
+		<p>alpha={{orientation.alpha-oInit.alpha}}°</p>
+		<div class="progress">
+		  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(orientation.alpha-oInit.alpha)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.alpha-oInit.alpha)/3.6}}%">
+		    <span class="sr-only">{{(orientation.alpha-oInit.alpha)/3.6}}% Complete (success)</span>
+		  </div>
+		</div>
+
+		<p>beta={{orientation.beta-oInit.beta}}°</p>
+		<div class="progress">
+		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(orientation.beta-oInit.beta+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.beta-oInit.beta+90)/1.8}}%">
+		    <span class="sr-only">{{(orientation.beta-oInit.beta+90)/1.8}}% Complete (success)</span>
+		  </div>
+		</div>
+
+		<p> gamma={{orientation.gamma-oInit.gamma}}°</p>
+		<div class="progress">
+		  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(orientation.gamma-oInit.gamma+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.gamma-oInit.gamma+90)/1.8}}%">
+		    <span class="sr-only">{{(orientation.gamma-oInit.gamma+90)/1.8}}% Complete (success)</span>
+		  </div>
+		</div>
+
 		<button ng-click="newInit()">Reset</button>
 	</div>
 	</body>
