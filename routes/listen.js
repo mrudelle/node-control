@@ -6,21 +6,29 @@ var EventEmitter = require("events").EventEmitter
 /* New values posted */
 router.get('/:sid', function(req, res) {
 
-	console.log("Slave " + req.params.sid + " connecting");
-
 	// let request last as long as possible
 	req.socket.setTimeout(Infinity);
 
 	// creates the envent callback to contact the slave
 	slave = new EventEmitter();
 
+	// actually send the control orders to the "slave"
 	slave.on('newOrientation', function(orientation) {
 		res.write("data:" + JSON.stringify(orientation));
 		res.write('\n\n');
-		console.log("slave " + req.params.sid + " will receive: " + orientation);
 	});
 
 	req.app.locals.slave[req.params.sid] = slave;
+
+	/*
+	ressources on server sent event:
+		- http://www.html5rocks.com/en/tutorials/eventsource/basics/
+		- https://github.com/tomkersten/sses-node-example/blob/master/app.js#L76
+		- https://github.com/BrunoChauvet/rails-angularjs-sse/blob/93083b487d19493db98be40bf92c58fe259d811c/app/assets/javascripts/share.js
+
+	ressources on EventEmitter:
+		- http://code.tutsplus.com/tutorials/using-nodes-event-module--net-35941
+	*/
 
 
 

@@ -11,6 +11,8 @@
 			beta: 0,
 			gamma: 0}
 
+
+
 		// listen for server sent event
 		var source = new EventSource('/listen/AAAAAA');
 
@@ -35,10 +37,6 @@
 
 			$scope.$apply();
 		});
-
-		source.addEventListener('error', function(e) {
-			console.log(e);
-		}, false);
 
 	}]);
 

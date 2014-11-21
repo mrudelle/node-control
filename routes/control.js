@@ -4,8 +4,8 @@ var router = express.Router();
 /* New values posted */
 router.post('/:sid', function(req, res) {
 	
-	
-	//trigger a new orientation event to this session
+
+	//trigger a new orientation event to the target session
 	target = req.app.locals.slave[req.params.sid]
 	if (target != null)
 	{
