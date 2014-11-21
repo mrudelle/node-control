@@ -18,6 +18,10 @@
 			init: 1}
 
 		$scope.newOrientation = function(event) {
+			var diff = 	Math.abs($scope.orientation.beta - Math.trunc(event.beta)) +
+			 			Math.abs($scope.orientation.gamma - Math.trunc(event.gamma)) + 
+			 			Math.abs($scope.orientation.alpha - Math.trunc(event.alpha))
+
 			$scope.orientation.beta = Math.trunc(event.beta)
 			$scope.orientation.gamma = Math.trunc(event.gamma)
 			$scope.orientation.alpha = Math.trunc(event.alpha)
@@ -32,17 +36,23 @@
 			$scope.$apply()
 
 			// send that new info to the server
-			$http.post('/control', {
-				alpha: $scope.dAlpha(),
-				beta: $scope.dBeta(),
-				gamma: $scope.dGamma()})
+			if (diff > 0)
+			{
+				$http.post('/control', 
+				{
+					alpha: $scope.dAlpha(),
+					beta: $scope.dBeta(),
+					gamma: $scope.dGamma()})
 
-			.success(function(data, status, headers, config) {
-				$scope.msg = "new orientation posted " + status
-			})
-			.error(function(data, status, headers, config) {
-				$scope.err = "Ouch that didn't go well " + status
-			});
+				.success(function(data, status, headers, config) 
+				{
+					$scope.msg = "new orientation posted " + status
+				})
+				.error(function(data, status, headers, config) 
+				{
+					$scope.err = "Ouch that didn't go well " + status
+				});	
+			}
 		};
 
 		$window.addEventListener("deviceorientation", $scope.newOrientation)
