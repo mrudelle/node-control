@@ -6,16 +6,16 @@
 		$scope.msg = "Hello, World"
 		$scope.err = null
 
-		$scope.orientation = {}
-		$scope.orientation.alpha = 0
-		$scope.orientation.beta = 0
-		$scope.orientation.gamma = 0
+		$scope.orientation = {
+			alpha: 0,
+			beta: 0,
+			gamma: 0}
 
-		$scope.oInit = {}
-		$scope.oInit.alpha = 0
-		$scope.oInit.beta = 0
-		$scope.oInit.gamma = 0
-		$scope.oInit.init = 1
+		$scope.oInit = {
+			alpha: 0,
+			beta: 0,
+			gamma: 0,
+			init: 1}
 
 		$scope.newOrientation = function(event) {
 			$scope.orientation.beta = Math.trunc(event.beta)
@@ -32,11 +32,15 @@
 			$scope.$apply()
 
 			// send that new info to the server
-			$http.post('/someUrl', {msg:'hello word!'}).
-			success(function(data, status, headers, config) {
+			$http.post('/control', {
+				alpha: $scope.orientation.alpha - $scope.oInit.alpha,
+				beta: $scope.orientation.beta - $scope.oInit.beta,
+				gamma: $scope.orientation.gamma - $scope.oInit.gamma })
+
+			.success(function(data, status, headers, config) {
 				$scope.msg = "new orientation posted " + status
-			}).
-			error(function(data, status, headers, config) {
+			})
+			.error(function(data, status, headers, config) {
 				$scope.err = "Ouch that didn't go well " + status
 			});
 		};
