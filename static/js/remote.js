@@ -33,9 +33,9 @@
 
 			// send that new info to the server
 			$http.post('/control', {
-				alpha: $scope.orientation.alpha - $scope.oInit.alpha,
-				beta: $scope.orientation.beta - $scope.oInit.beta,
-				gamma: $scope.orientation.gamma - $scope.oInit.gamma })
+				alpha: $scope.dAlpha(),
+				beta: $scope.dBeta(),
+				gamma: $scope.dGamma()})
 
 			.success(function(data, status, headers, config) {
 				$scope.msg = "new orientation posted " + status
@@ -50,6 +50,19 @@
 		$scope.newInit = function() {
 			$scope.oInit.init = 1
 		}
+
+		$scope.dAlpha = function() {
+			return $scope.orientation.alpha - $scope.oInit.alpha
+		}
+
+		$scope.dBeta = function() {
+			return $scope.orientation.beta - $scope.oInit.beta
+		}
+
+		$scope.dGamma = function() {
+			return $scope.orientation.gamma - $scope.oInit.gamma
+		}
+
 	}]);
 
 })();

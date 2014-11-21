@@ -19,24 +19,24 @@
 		<div class="alert alert-success" >{{msg}}</div>
 		<div class="alert alert-danger" ng-show="err">{{err}}</div> 
 
-		<p>alpha={{orientation.alpha-oInit.alpha}}°</p>
+		<p>alpha={{dAlpha()}}°</p>
 		<div class="progress">
-		  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(orientation.alpha-oInit.alpha+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.alpha-oInit.alpha+180)/3.6}}%">
-		    <span class="sr-only">{{(orientation.alpha-oInit.alpha)/3.6}}% Complete (success)</span>
+		  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(dAlpha()+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dAlpha()+180)/3.6}}%">
+		    <span class="sr-only">{{(dAlpha())/3.6}}% Complete (success)</span>
 		  </div>
 		</div>
 
-		<p>beta={{orientation.beta-oInit.beta}}°</p>
+		<p>beta={{dBeta()}}°</p>
 		<div class="progress">
-		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(orientation.beta-oInit.beta+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.beta-oInit.beta+90)/1.8}}%">
-		    <span class="sr-only">{{(orientation.beta-oInit.beta+90)/1.8}}% Complete (success)</span>
+		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(dBeta()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dBeta()+90)/1.8}}%">
+		    <span class="sr-only">{{(dBeta()+90)/1.8}}% Complete (success)</span>
 		  </div>
 		</div>
 
-		<p> gamma={{orientation.gamma-oInit.gamma}}°</p>
+		<p> gamma={{dGamma()}}°</p>
 		<div class="progress">
-		  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(orientation.gamma-oInit.gamma+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.gamma-oInit.gamma+90)/1.8}}%">
-		    <span class="sr-only">{{(orientation.gamma-oInit.gamma+90)/1.8}}% Complete (success)</span>
+		  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(dGamma()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dGamma()+90)/1.8}}%">
+		    <span class="sr-only">{{(dGamma()+90)/1.8}}% Complete (success)</span>
 		  </div>
 		</div>
 
