@@ -1,6 +1,6 @@
 <html ng-app="nodeControlApp">
 <head>
-	<title>Node Control</title>
+	<title>Node Control - Remote</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -14,7 +14,7 @@
 <body ng-controller="appController as main">
 
 	<div class="container">
-		<h1>{{"Welcome to this new app"}}</h1>
+		<h1>Remote</h1>
 
 		<div class="alert alert-success" >{{msg}}</div>
 		<div class="alert alert-danger" ng-show="err">{{err}}</div> 
@@ -44,5 +44,5 @@
 	</div>
 	</body>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-<script type="text/javascript" src="static/js/remote.js"></script>
+<script type="text/javascript" src="/static/js/remote.js"></script>
 </html>

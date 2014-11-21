@@ -38,8 +38,9 @@
 			// send that new info to the server
 			if (diff > 0)
 			{
-				$http.post('/control', 
+				$http.post('/control/AAAAAA', 
 				{
+					type: 'orientation',
 					alpha: $scope.dAlpha(),
 					beta: $scope.dBeta(),
 					gamma: $scope.dGamma()})

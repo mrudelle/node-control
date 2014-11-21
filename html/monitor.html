@@ -1,0 +1,46 @@
+<html ng-app="nodeMonitorApp">
+<head>
+	<title>Node Control - Monitor</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<style type="text/css">
+		.progress-bar {
+			transition: none;
+		}
+	</style>
+
+</head>
+<body ng-controller="appController as main">
+
+	<div class="container">
+		<h1>Monitor</h1>
+
+		<div class="alert alert-success" >{{msg}}</div>
+		<div class="alert alert-danger" ng-show="err">{{err}}</div> 
+
+		<p>alpha={{orientation.alpha}}°</p>
+		<div class="progress">
+		  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(orientation.alpha+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.alpha+180)/3.6}}%">
+		    <span class="sr-only">{{(orientation.alpha)/3.6}}% Complete (success)</span>
+		  </div>
+		</div>
+
+		<p>beta={{orientation.beta}}°</p>
+		<div class="progress">
+		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(orientation.beta+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.beta+90)/1.8}}%">
+		    <span class="sr-only">{{(orientation.beta+90)/1.8}}% Complete (success)</span>
+		  </div>
+		</div>
+
+		<p> gamma={{orientation.gamma}}°</p>
+		<div class="progress">
+		  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(orientation.gamma+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.gamma+90)/1.8}}%">
+		    <span class="sr-only">{{(orientation.gamma+90)/1.8}}% Complete (success)</span>
+		  </div>
+		</div>
+	</div>
+	</body>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script type="text/javascript" src="/static/js/monitor.js"></script>
+</html>
