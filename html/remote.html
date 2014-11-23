@@ -1,4 +1,4 @@
-<html ng-app="nodeControlApp">
+<html ng-app="remoteApp">
 <head>
 	<title>Node Control - Remote</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -16,7 +16,7 @@
 	<div class="container">
 		<h1>Remote</h1>
 
-		<div ng-hide="sid">
+		<div ng-hide="remote.sid">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
 				<input id="sid-field" type="text" class="form-control" placeholder="Session ID"  ng-model="tempSid" style="text-transform:uppercase" >
@@ -27,38 +27,40 @@
 			</div>				
 		</div>
 
-		<div ng-show="sid">
+		<div ng-show="remote.sid">
 			<div class="alert alert-info" >
-				You are connected to <b>{{sid}}</b> <a ng-click="resetSid()"><i class="glyphicon glyphicon-pencil"></i></a>
+				You are connected to <b>{{remote.sid}}</b> <a ng-click="resetSid()"><i class="glyphicon glyphicon-pencil"></i></a>
 			</div>
-			<div class="alert alert-success" ng-show="msg">{{msg}}</div>
-			<div class="alert alert-danger" ng-show="err">{{err}}</div> 
+			<div class="alert alert-success" ng-show="remote.msg">{{remote.msg}}</div>
+			<div class="alert alert-danger" ng-show="remote.err">{{remote.err}}</div> 
 
-			<p>alpha={{dAlpha()}}°</p>
+			<p>alpha={{remote.dAlpha()}}°</p>
 			<div class="progress">
-				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(dAlpha()+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dAlpha()+180)/3.6}}%">
-					<span class="sr-only">{{(dAlpha())/3.6}}% Complete (success)</span>
+				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(remote.dAlpha()+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(remote.dAlpha()+180)/3.6}}%">
+					<span class="sr-only">{{(remote.dAlpha())/3.6}}% Complete (success)</span>
 				</div>
 			</div>
 
-			<p>beta={{dBeta()}}°</p>
+			<p>beta={{remote.dBeta()}}°</p>
 			<div class="progress">
-				<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(dBeta()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dBeta()+90)/1.8}}%">
-					<span class="sr-only">{{(dBeta()+90)/1.8}}% Complete (success)</span>
+				<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(remote.dBeta()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(remote.dBeta()+90)/1.8}}%">
+					<span class="sr-only">{{(remote.dBeta()+90)/1.8}}% Complete (success)</span>
 				</div>
 			</div>
 
-			<p> gamma={{dGamma()}}°</p>
+			<p> gamma={{remote.dGamma()}}°</p>
 			<div class="progress">
-				<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(dGamma()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dGamma()+90)/1.8}}%">
-					<span class="sr-only">{{(dGamma()+90)/1.8}}% Complete (success)</span>
+				<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(remote.dGamma()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(remote.dGamma()+90)/1.8}}%">
+					<span class="sr-only">{{(remote.dGamma()+90)/1.8}}% Complete (success)</span>
 				</div>
 			</div>
 
-			<button ng-click="newInit()">Reset</button>
+			<button ng-click="remote.resetOrientation()">Reset</button>
 		</div>
 	</div>
 </body>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-<script type="text/javascript" src="/static/js/remote.js"></script>
+<!-- load the remote angular service -->
+<script type="text/javascript" src="/static/js/remote.js"></script> 
+<script type="text/javascript" src="/static/js/remote-controler.js"></script>
 </html>

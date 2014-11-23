@@ -1,100 +1,92 @@
 (function(){
-	var app = angular.module('nodeControlApp', [])
+	var app = angular.module('remoteControlModule', [])
 
-	app.controller('appController', [ '$scope', '$window', '$http', function($scope, $window, $http){
-		
-		$scope.msg = "Hello, World"
-		$scope.err = null
-		$scope.sid = null
+	/*
+		this service defines a remote object that will constantly monitor the orientation and 
+		send it to the server to the session SID only if this value is set
+		the orientation served "live" at this.orientation and changes trigger $rootScope.$apply already
+	*/
 
-		$scope.orientation = {
+	app.factory("RemoteService", ["$window", "$http", "$rootScope", function($window, $http, $rootScope){
+
+		var remote = {}
+
+		remote.msg = "Hello, World"
+		remote.err = null
+		remote.sid = null
+
+		remote.orientation = {
 			alpha: 0,
 			beta: 0,
 			gamma: 0}
 
-		$scope.oInit = {
+		remote.oInit = {
 			alpha: 0,
 			beta: 0,
 			gamma: 0,
 			init: 1}
 
-		$scope.newOrientation = function(event) {
-			var diff = 	Math.abs($scope.orientation.beta - Math.trunc(event.beta)) +
-			 			Math.abs($scope.orientation.gamma - Math.trunc(event.gamma)) + 
-			 			Math.abs($scope.orientation.alpha - Math.trunc(event.alpha))
+		remote.newOrientation = function(event) {
+			var diff = 	Math.abs(remote.orientation.beta - Math.trunc(event.beta)) +
+			 			Math.abs(remote.orientation.gamma - Math.trunc(event.gamma)) + 
+			 			Math.abs(remote.orientation.alpha - Math.trunc(event.alpha))
 
-			$scope.orientation.beta = Math.trunc(event.beta)
-			$scope.orientation.gamma = Math.trunc(event.gamma)
-			$scope.orientation.alpha = Math.trunc(event.alpha)
+			remote.orientation.beta = Math.trunc(event.beta)
+			remote.orientation.gamma = Math.trunc(event.gamma)
+			remote.orientation.alpha = Math.trunc(event.alpha)
 
-			if(!$scope.oInit.init == 0) {
-				$scope.oInit.init = 0
-				$scope.oInit.beta = $scope.orientation.beta
-				$scope.oInit.gamma = $scope.orientation.gamma
-				$scope.oInit.alpha = $scope.orientation.alpha
+			if(!remote.oInit.init == 0) {
+				remote.oInit.init = 0
+				remote.oInit.beta = remote.orientation.beta
+				remote.oInit.gamma = remote.orientation.gamma
+				remote.oInit.alpha = remote.orientation.alpha
 			}
 
-			$scope.$apply()
+			// we have to manually update this as event listeners do not trigger angular $apply
+			$rootScope.$apply()
 
 			// send that new info to the server
-			if (diff > 0 && $scope.sid != null)
+			if (diff > 0 && remote.sid != null)
 			{
-				$http.post('/control/' + $scope.sid, 
+				$http.post('/control/' + remote.sid, 
 				{
 					type: 'orientation',
-					alpha: $scope.dAlpha(),
-					beta: $scope.dBeta(),
-					gamma: $scope.dGamma()})
+					alpha: remote.dAlpha(),
+					beta: remote.dBeta(),
+					gamma: remote.dGamma()})
 
 				.success(function(data, status, headers, config) 
 				{
-					$scope.msg = "new orientation posted (" + status + ")"
-					$scope.err = null
+					remote.msg = "new orientation posted (" + status + ")"
+					remote.err = null
 				})
 				.error(function(data, status, headers, config) 
 				{
-					$scope.err = status + " : " + data
-					$scope.msg = null
+					remote.err = status + " : " + data
+					remote.msg = null
 				});	
 			}
 		};
 
-		$window.addEventListener("deviceorientation", $scope.newOrientation)
-	
-		$scope.newInit = function() {
-			$scope.oInit.init = 1
+		$window.addEventListener("deviceorientation", remote.newOrientation)
+
+		remote.resetOrientation = function() {
+			remote.oInit.init = 1
 		}
 
-		$scope.dAlpha = function() {
-			return $scope.orientation.alpha - $scope.oInit.alpha
+		remote.dAlpha = function() {
+			return remote.orientation.alpha - remote.oInit.alpha
 		}
 
-		$scope.dBeta = function() {
-			return $scope.orientation.beta - $scope.oInit.beta
+		remote.dBeta = function() {
+			return remote.orientation.beta - remote.oInit.beta
 		}
 
-		$scope.dGamma = function() {
-			return $scope.orientation.gamma - $scope.oInit.gamma
+		remote.dGamma = function() {
+			return remote.orientation.gamma - remote.oInit.gamma
 		}
 
-		$scope.applySid = function()
-		{
-			$scope.sid = $scope.tempSid.toUpperCase();
-		}
-
-		$scope.resetSid = function()
-		{
-			$scope.sid = null
-			$scope.err = null
-			$scope.msg = null
-		}
-
-		$scope.resetSidField = function()
-		{
-			$scope.tempSid = null
-			document.getElementById("sid-field").focus();
-		}
-
-	}]);
+		return remote;
+	}])
 
 })();

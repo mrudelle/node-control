@@ -1,4 +1,4 @@
-<html ng-app="nodeMonitorApp">
+<html ng-app="barInterfaceApp">
 <head>
 	<title>Node Control - Monitor</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -16,32 +16,34 @@
 	<div class="container">
 		<h1>Monitor</h1>
 
-		<div class="alert alert-info" >Session ID: <b>{{sid}}</b></div>
-		<div class="alert alert-success" >{{msg}}</div>
-		<div class="alert alert-danger" ng-show="err">{{err}}</div> 
+		<div class="alert alert-info" >Session ID: <b>{{monitor.sid}}</b></div>
+		<div class="alert alert-success" ng-show="monitor.msg">{{monitor.msg}}</div>
+		<div class="alert alert-danger" ng-show="monitor.err">{{monitor.err}}</div> 
 
-		<p>alpha={{orientation.alpha}}°</p>
+		<p>alpha={{monitor.orientation.alpha}}°</p>
 		<div class="progress">
-		  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(orientation.alpha+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.alpha+180)/3.6}}%">
-		    <span class="sr-only">{{(orientation.alpha)/3.6}}% Complete (success)</span>
+		  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(monitor.orientation.alpha+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(monitor.orientation.alpha+180)/3.6}}%">
+		    <span class="sr-only">{{(monitor.orientation.alpha)/3.6}}% Complete (success)</span>
 		  </div>
 		</div>
 
-		<p>beta={{orientation.beta}}°</p>
+		<p>beta={{monitor.orientation.beta}}°</p>
 		<div class="progress">
-		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(orientation.beta+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.beta+90)/1.8}}%">
-		    <span class="sr-only">{{(orientation.beta+90)/1.8}}% Complete (success)</span>
+		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(monitor.orientation.beta+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(monitor.orientation.beta+90)/1.8}}%">
+		    <span class="sr-only">{{(monitor.orientation.beta+90)/1.8}}% Complete (success)</span>
 		  </div>
 		</div>
 
-		<p> gamma={{orientation.gamma}}°</p>
+		<p>gamma={{monitor.orientation.gamma}}°</p>
 		<div class="progress">
-		  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(orientation.gamma+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(orientation.gamma+90)/1.8}}%">
-		    <span class="sr-only">{{(orientation.gamma+90)/1.8}}% Complete (success)</span>
+		  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(monitor.orientation.gamma+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(monitor.orientation.gamma+90)/1.8}}%">
+		    <span class="sr-only">{{(monitor.orientation.gamma+90)/1.8}}% Complete (success)</span>
 		  </div>
 		</div>
 	</div>
 	</body>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<!-- load the monitor angular service -->
 <script type="text/javascript" src="/static/js/monitor.js"></script>
+<script type="text/javascript" src="/static/js/interface-bars.js"></script>
 </html>
