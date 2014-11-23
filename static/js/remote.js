@@ -37,7 +37,7 @@
 			$scope.$apply()
 
 			// send that new info to the server
-			if (diff > 0)
+			if (diff > 0 && $scope.sid != null)
 			{
 				$http.post('/control/' + $scope.sid, 
 				{
