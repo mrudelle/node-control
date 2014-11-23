@@ -6,6 +6,15 @@ var EventEmitter = require("events").EventEmitter
 /* New values posted */
 router.get('/:sid', function(req, res) {
 
+	// send an error if this sid is already in use
+	if (req.app.locals.slave[req.params.sid] != null)
+	{
+		res.status(409); // send a conflict error
+		res.end("sid already in use, pick another");
+
+		return;
+	}
+
 	// let request last as long as possible
 	req.socket.setTimeout(Infinity);
 

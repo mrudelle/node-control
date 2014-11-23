@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var sidFactory = require('./routes/sidFactory');
 var control = require('./routes/control');
 var listen = require('./routes/listen');
 
@@ -42,6 +42,8 @@ app.get('/remote', function(req, res) {
 app.get('/monitor', function(req, res) {
     res.sendFile(path.join(__dirname, 'html', 'monitor.html'));
 });
+
+app.use('/getsid', sidFactory);
 
 //controler will send their orders here
 app.use('/control', control);
