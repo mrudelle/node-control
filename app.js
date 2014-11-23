@@ -39,9 +39,7 @@ app.get('/remote', function(req, res) {
     res.sendFile(path.join(__dirname, 'html', 'remote.html'));
 });
 
-app.get('/monitor', function(req, res) {
-    res.sendFile(path.join(__dirname, 'html', 'monitor.html'));
-});
+app.use('/monitor', express.static(path.join(__dirname, 'html', 'monitor')));
 
 app.use('/getsid', sidFactory);
 
