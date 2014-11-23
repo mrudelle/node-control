@@ -1,0 +1,31 @@
+<html ng-app="mapInterfaceApp">
+<head>
+
+	<title>Node Control - Map Interface</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<link rel="import" href="/static/web-components/google-map-master/google-map.html">
+
+	<style type="text/css">
+		google-map {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+	</style>
+
+</head>
+<body ng-controller="appController as main">
+
+	<google-map latitude="46.508" longitude="6.553" zoom="12" disableDefaultUI="true">
+	</google-map>
+	
+</body>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<!-- load the monitor angular service -->
+<script type="text/javascript" src="/static/js/monitor.js"></script>
+<script type="text/javascript" src="/static/js/interface-maps.js"></script>
+</html>
