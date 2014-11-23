@@ -1,6 +1,12 @@
 (function(){
 	var app = angular.module('remoteControlModule', [])
 
+	/*
+		this service defines a monitor objects that first fetch a SID (available at monitor.sid)
+		then it connects to the server and listen for changes in orientation
+		changes on monitor.orientation are "live" as message events trigger a $rootscope.$apply
+	*/
+
 	app.factory("MonitorService", ["$http", "$rootScope", function($http, $rootScope) {
 		
 		var monitor = {}

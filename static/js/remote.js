@@ -1,6 +1,12 @@
 (function(){
 	var app = angular.module('remoteControlModule', [])
 
+	/*
+		this service defines a remote object that will constantly monitor the orientation and 
+		send it to the server to the session SID only if this value is set
+		the orientation served "live" at this.orientation and changes trigger $rootScope.$apply already
+	*/
+
 	app.factory("RemoteService", ["$window", "$http", "$rootScope", function($window, $http, $rootScope){
 
 		var remote = {}
