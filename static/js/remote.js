@@ -87,7 +87,12 @@
 			$scope.sid = null
 			$scope.err = null
 			$scope.msg = null
-			$scope.tempSid = null //to clear the field
+		}
+
+		$scope.resetSidField = function()
+		{
+			$scope.tempSid = null
+			document.getElementById("sid-field").focus();
 		}
 
 	}]);
