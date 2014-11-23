@@ -5,6 +5,7 @@
 		
 		$scope.msg = "Hello, World"
 		$scope.err = null
+		$scope.sid = null
 
 		$scope.orientation = {
 			alpha: 0,
@@ -38,7 +39,7 @@
 			// send that new info to the server
 			if (diff > 0)
 			{
-				$http.post('/control/AAAAAA', 
+				$http.post('/control/' + $scope.sid, 
 				{
 					type: 'orientation',
 					alpha: $scope.dAlpha(),
@@ -72,6 +73,11 @@
 
 		$scope.dGamma = function() {
 			return $scope.orientation.gamma - $scope.oInit.gamma
+		}
+
+		$scope.applySid = function()
+		{
+			$scope.sid = $scope.tempSid.toUpperCase();
 		}
 
 	}]);

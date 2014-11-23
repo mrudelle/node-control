@@ -5,9 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 	<style type="text/css">
-		.progress-bar {
-			transition: none;
-		}
+	.progress-bar {
+		transition: none;
+	}
 	</style>
 
 </head>
@@ -16,33 +16,46 @@
 	<div class="container">
 		<h1>Remote</h1>
 
-		<div class="alert alert-success" >{{msg}}</div>
-		<div class="alert alert-danger" ng-show="err">{{err}}</div> 
-
-		<p>alpha={{dAlpha()}}°</p>
-		<div class="progress">
-		  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(dAlpha()+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dAlpha()+180)/3.6}}%">
-		    <span class="sr-only">{{(dAlpha())/3.6}}% Complete (success)</span>
-		  </div>
+		<div ng-hide="sid">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+				<input type="text" class="form-control" placeholder="Session ID"  ng-model="tempSid" style="text-transform:uppercase" >
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" ng-click="applySid()">Connect</button>
+				</span>
+			</div>				
 		</div>
 
-		<p>beta={{dBeta()}}°</p>
-		<div class="progress">
-		  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(dBeta()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dBeta()+90)/1.8}}%">
-		    <span class="sr-only">{{(dBeta()+90)/1.8}}% Complete (success)</span>
-		  </div>
-		</div>
+		<div ng-show="sid">
+			<div class="alert alert-info" >You are connected to <b>{{sid}}</b></div>
+			<div class="alert alert-success" >{{msg}}</div>
+			<div class="alert alert-danger" ng-show="err">{{err}}</div> 
 
-		<p> gamma={{dGamma()}}°</p>
-		<div class="progress">
-		  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(dGamma()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dGamma()+90)/1.8}}%">
-		    <span class="sr-only">{{(dGamma()+90)/1.8}}% Complete (success)</span>
-		  </div>
-		</div>
+			<p>alpha={{dAlpha()}}°</p>
+			<div class="progress">
+				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(dAlpha()+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dAlpha()+180)/3.6}}%">
+					<span class="sr-only">{{(dAlpha())/3.6}}% Complete (success)</span>
+				</div>
+			</div>
 
-		<button ng-click="newInit()">Reset</button>
+			<p>beta={{dBeta()}}°</p>
+			<div class="progress">
+				<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(dBeta()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dBeta()+90)/1.8}}%">
+					<span class="sr-only">{{(dBeta()+90)/1.8}}% Complete (success)</span>
+				</div>
+			</div>
+
+			<p> gamma={{dGamma()}}°</p>
+			<div class="progress">
+				<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(dGamma()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(dGamma()+90)/1.8}}%">
+					<span class="sr-only">{{(dGamma()+90)/1.8}}% Complete (success)</span>
+				</div>
+			</div>
+
+			<button ng-click="newInit()">Reset</button>
+		</div>
 	</div>
-	</body>
+</body>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
 <script type="text/javascript" src="/static/js/remote.js"></script>
 </html>
