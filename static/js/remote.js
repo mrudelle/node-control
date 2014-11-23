@@ -80,6 +80,11 @@
 			$scope.sid = $scope.tempSid.toUpperCase();
 		}
 
+		$scope.resetSid = function()
+		{
+			$scope.sid = null;
+		}
+
 	}]);
 
 })();

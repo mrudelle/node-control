@@ -27,7 +27,9 @@
 		</div>
 
 		<div ng-show="sid">
-			<div class="alert alert-info" >You are connected to <b>{{sid}}</b></div>
+			<div class="alert alert-info" >
+				You are connected to <b>{{sid}}</b> <a ng-click="resetSid()"><i class="glyphicon glyphicon-pencil "></i></a>
+			</div>
 			<div class="alert alert-success" >{{msg}}</div>
 			<div class="alert alert-danger" ng-show="err">{{err}}</div> 
 
