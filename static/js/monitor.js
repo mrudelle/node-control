@@ -1,33 +1,31 @@
 (function(){
-	var app = angular.module('nodeMonitorApp', [])
+	var app = angular.module('remoteControlModule', [])
 
-	app.controller('appController', [ '$scope', '$window', '$http', function($scope, $window, $http){
+	app.factory("MonitorService", ["$http", "$rootScope", function($http, $rootScope) {
 		
-		$scope.msg = "Hello, World"
-		$scope.err = null
+		var monitor = {}
 
-		$scope.orientation = {
+		monitor.orientation = {
 			alpha: 0,
 			beta: 0,
 			gamma: 0}
 
-		// $scope.sid = $scope.generateSid();
-		$scope.sid = null
+		monitor.sid = null
 
 		$http.get('/getsid').
 			success(function(data, status, headers, config) 
 			{
-				$scope.sid = data;
+				monitor.sid = data;
 
-				if($scope.sid == null)
+				if(monitor.sid == null)
 				{
-					$scope.err = 'new sid not readable'
+					monitor.err = 'new sid not readable'
 					return;
 				}
 
 
 				// setup connection to listen for server sent event
-				var source = new EventSource('/listen/' + $scope.sid);
+				var source = new EventSource('/listen/' + monitor.sid);
 
 				source.onerror = function(error)
 				{
@@ -41,28 +39,30 @@
 
 					if(msg.type && msg.type == 'orientation')
 					{
-						$scope.orientation = {
+						monitor.orientation = {
 							alpha: msg.alpha,
 							beta: msg.beta,
 							gamma: msg.gamma
 						}
 
-						$scope.msg = "New orientation received";
+						monitor.msg = "New orientation received";
+						console.log(monitor.orientation)
 					}
 					else
 					{
 						console.log("unknown control type received: " + msg.type);
 					}
 
-					$scope.$apply();
+					$rootScope.$apply();
 				});
 				
 			}).
 			error(function(data, status, headers, config) 
 			{
-				$scope.err = 'unable to fetch a new session id, refresh to retry'
+				monitor.err = 'unable to fetch a new session id, refresh to retry'
 			});
 
+		return monitor;
 
 	}]);
 
