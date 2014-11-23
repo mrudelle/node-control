@@ -13,7 +13,9 @@ router.post('/:sid', function(req, res) {
 	}
 	else
 	{
-		console.log("No listener with SID:" + req.params.sid);
+		res.status(404)
+		res.end('Session ID not found')
+		return
 	}
 
 	res.end('It worked');

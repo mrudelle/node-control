@@ -48,11 +48,13 @@
 
 				.success(function(data, status, headers, config) 
 				{
-					$scope.msg = "new orientation posted " + status
+					$scope.msg = "new orientation posted (" + status + ")"
+					$scope.err = null
 				})
 				.error(function(data, status, headers, config) 
 				{
-					$scope.err = "Ouch that didn't go well " + status
+					$scope.err = status + " : " + data
+					$scope.msg = null
 				});	
 			}
 		};
@@ -82,7 +84,10 @@
 
 		$scope.resetSid = function()
 		{
-			$scope.sid = null;
+			$scope.sid = null
+			$scope.err = null
+			$scope.msg = null
+			$scope.tempSid = null //to clear the field
 		}
 
 	}]);

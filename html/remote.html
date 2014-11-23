@@ -30,7 +30,7 @@
 			<div class="alert alert-info" >
 				You are connected to <b>{{sid}}</b> <a ng-click="resetSid()"><i class="glyphicon glyphicon-pencil "></i></a>
 			</div>
-			<div class="alert alert-success" >{{msg}}</div>
+			<div class="alert alert-success" ng-show="msg">{{msg}}</div>
 			<div class="alert alert-danger" ng-show="err">{{err}}</div> 
 
 			<p>alpha={{dAlpha()}}°</p>
