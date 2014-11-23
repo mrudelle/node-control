@@ -8,20 +8,37 @@
 	<link rel="import" href="/static/web-components/google-map-master/google-map.html">
 
 	<style type="text/css">
+
 		google-map {
 			position: absolute;
 			top: 0;
 			right: 0;
 			bottom: 0;
 			left: 0;
+			z-index: 0;
 		}
+
+		#sid {
+			position: absolute;
+			top: 1em;
+			right: 1em;
+			z-index: 4;
+		}
+
+		#sid label {
+			font-weight: bold;
+			font-size: 2em;
+		}
+
 	</style>
 
 </head>
 <body ng-controller="appController as main">
 
-	<google-map latitude="46.508" longitude="6.553" zoom="12" disableDefaultUI="true">
+	<google-map latitude="{{lat}}" longitude="{{lon}}" zoom="12" disableDefaultUI="true">
 	</google-map>
+
+	<div id="sid" class="well">Session ID<br><label>{{monitor.sid}}</label></div>
 	
 </body>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
