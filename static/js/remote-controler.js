@@ -6,6 +6,9 @@
 		
 		$scope.remote = remoteService
 
+		// focus on the Session id when we first arrive
+		document.getElementById("sid-field").focus();
+
 		$scope.applySid = function()
 		{
 			$scope.remote.sid = $scope.tempSid.toUpperCase();
