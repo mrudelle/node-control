@@ -29,4 +29,28 @@
 
 	}]);
 
+
+	/*
+		allows a input to trigger a function when enter is hit
+		directive from http://stackoverflow.com/questions/15417125/submit-form-on-pressing-enter-with-angularjs
+	*/ 
+	app.directive('ngEnter', function() 
+	{
+        return function(scope, element, attrs) 
+        {
+            element.bind("keydown keypress", function(event) 
+            {
+                if(event.which === 13) 
+                {
+                    scope.$apply(function()
+                    {
+                        scope.$eval(attrs.ngEnter, {'event': event});
+                    });
+
+                    event.preventDefault();
+                }
+            });
+        };
+    });
+
 })();
