@@ -19,7 +19,7 @@
 		<div ng-hide="remote.sid">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-				<input id="sid-field" type="text" class="form-control" placeholder="Session ID"  ng-model="tempSid" style="text-transform:uppercase" >
+				<input id="sid-field" type="text" class="form-control" placeholder="Session ID"  ng-model="tempSid" ng-enter="applySid()" style="text-transform:uppercase" >
 				<span class="input-group-btn">
 		            <button class="btn btn-default" type="button" ng-click="resetSidField()"><i class="glyphicon glyphicon-remove-circle"  style="line-height:1.45em"> </i></button>
 					<button class="btn btn-default" type="button" ng-click="applySid()">Connect</button>
@@ -55,7 +55,12 @@
 				</div>
 			</div>
 
-			<button ng-click="remote.resetOrientation()">Reset</button>
+			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="remote.resetOrientation()">Reset Orientation</button>
+
+			<br>
+
+			<div class="alert alert-info">Set your <strong>screen timeout</strong> to infinity for a better experience!</div>
+
 		</div>
 	</div>
 </body>
