@@ -5,9 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 	<style type="text/css">
+
 	.progress-bar {
 		transition: none;
 	}
+
+	[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+		display: none !important;
+	}
+
 	</style>
 
 </head>
@@ -27,7 +33,7 @@
 			</div>				
 		</div>
 
-		<div ng-show="remote.sid">
+		<div ng-cloak ng-show="remote.sid">
 			<div class="alert alert-info" >
 				You are connected to <b>{{remote.sid}}</b> <a ng-click="resetSid()"><i class="glyphicon glyphicon-pencil"></i></a>
 			</div>
