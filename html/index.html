@@ -2,28 +2,89 @@
 <head>
 	<title>Node Control</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+	<style type="text/css">
+
+		.container {
+			text-align: center;
+		}
+
+		#or {
+			font-size: 2em;
+			color: gray;
+			padding: 1.5em 0 1.5em 0;
+			margin: 0;
+		}
+
+		.fa {
+			margin-bottom: 0.3em;
+		}
+
+		ul {
+			padding: 0.5em 1em 0.5em 1em;
+			margin: 0;
+		}
+
+		li {
+			padding: 0;
+		}
+
+		.polaroid {
+			box-shadow: 0 1px 1.5px rgba(0, 0, 0, 0.16);
+			background-color: whitesmoke;
+			padding: 1em;
+		}
+
+	</style>
 </head>
 	<body ng-controller="appController as main">
 
 		<div class="container">
 
-			<h1>Welcome</h1>
-			<a href="remote/">I am the remote</a>
-			<br>or <br>
-			I am the monitor:
-			<ul>
-				<li>
-					<a href="monitor/interface-maps.html">Maps</a>
-				</li>
-				<li>
-					<a href="monitor/interface-bars.html">Bars</a>
-				</li>
-			</ul>	
+			<h1>Remote Control with Node.js</h1>
+
+			<br>
+			
+			<a href="remote/" class="btn btn-lg btn-success btn-block">
+				<i class="fa fa-gamepad fa-2x"></i>
+				<br>
+				be the REMOTE
+			</a>
+			
+			<p id="or">- or -</p>
+
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<i class="fa fa-desktop fa-2x"></i>
+					<br>
+					be the MONITOR
+				</div>
+				<div class="panel-body">
+					<ul class="row">
+						<li class="col-xs-6 col-sm-3">
+							<div class="polaroid">
+								<i class="fa fa-map-marker fa-2x"></i>
+								<br>
+								<a href="monitor/interface-maps.html">Maps</a>
+							</div>
+						</li>
+						<li class="col-xs-6 col-sm-3">
+							<div class="polaroid">
+								<i class="fa fa-wrench fa-2x"></i>
+								<br>
+								<a href="monitor/interface-bars.html">Bars</a>
+							</div>
+						</li>
+					</ul>	
+				</div>
+			</div>
 
 		</div>
 
 	</body>
+	<!-- 
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+	 -->
 </html>
