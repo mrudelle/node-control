@@ -5,8 +5,6 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-	<link rel="import" href="/static/web-components/google-map-master/google-map.html">
-
 	<style type="text/css">
 
 		#canvas 
@@ -43,7 +41,7 @@
 </head>
 <body ng-controller="appController as main">
 
-	<div id="canvas">
+	<div id="canvas" three-model="/static/obj/teapot.js" alpha="{{monitor.orientation.alpha}}" beta="{{monitor.orientation.beta}}" gamma="{{monitor.orientation.gamma}}">
 
 	</div>
 
@@ -53,6 +51,7 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
 <!-- load the monitor angular service -->
 <script type="text/javascript" src="/static/js/monitor.js"></script>
+<script type="text/javascript" src="/static/js/directive-three.js"></script>
 <script type="text/javascript" src="/static/js/interface-three.js"></script>
 
 <!-- get Jquery to manipulate dom elements -->
@@ -62,6 +61,7 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
 
 <!-- our three.js application -->
+<!-- 
 <script type="text/javascript">
 	(function(){
 		// scene size
@@ -128,5 +128,6 @@
 	})();
 
 </script>
+ -->
 
 </html>
