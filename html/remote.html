@@ -42,22 +42,22 @@
 
 			<p>alpha={{remote.dAlpha()}}°</p>
 			<div class="progress">
-				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{(remote.dAlpha()+180)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(remote.dAlpha()+180)/3.6}}%">
-					<span class="sr-only">{{(remote.dAlpha())/3.6}}% Complete (success)</span>
+				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{((remote.dAlpha()+180)%360)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{((remote.dAlpha()+180)%360)/3.6}}%">
+					<span class="sr-only">{{((remote.dAlpha()+180)%360)/3.6}}% Complete (success)</span>
 				</div>
 			</div>
 
 			<p>beta={{remote.dBeta()}}°</p>
 			<div class="progress">
-				<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{(remote.dBeta()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(remote.dBeta()+90)/1.8}}%">
-					<span class="sr-only">{{(remote.dBeta()+90)/1.8}}% Complete (success)</span>
+				<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{((remote.dBeta()+180)%360)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{((remote.dBeta()+180)%360)/3.6}}%">
+					<span class="sr-only">{{((remote.dBeta()+180)%360)/3.6}}% Complete (success)</span>
 				</div>
 			</div>
 
 			<p> gamma={{remote.dGamma()}}°</p>
 			<div class="progress">
-				<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{(remote.dGamma()+90)/1.8}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(remote.dGamma()+90)/1.8}}%">
-					<span class="sr-only">{{(remote.dGamma()+90)/1.8}}% Complete (success)</span>
+				<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{((remote.dGamma()+180)%360)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{((remote.dGamma()+180)%360)/3.6}}%">
+					<span class="sr-only">{{((remote.dGamma()+180)%360)/3.6}}% Complete (success)</span>
 				</div>
 			</div>
 
