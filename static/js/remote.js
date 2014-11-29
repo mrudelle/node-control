@@ -35,7 +35,8 @@
 			remote.orientation.gamma = Math.trunc(event.gamma)
 			remote.orientation.alpha = Math.trunc(event.alpha)
 
-			if(!remote.oInit.init == 0) {
+			// we perform orientation initialisation when init = 1
+			if(remote.oInit.init != 0) {
 				remote.oInit.init = 0
 				remote.oInit.beta = remote.orientation.beta
 				remote.oInit.gamma = remote.orientation.gamma
@@ -70,20 +71,30 @@
 
 		$window.addEventListener("deviceorientation", remote.newOrientation)
 
-		remote.resetOrientation = function() {
+		remote.resetOrientation = function() 
+		{
 			remote.oInit.init = 1
 		}
 
-		remote.dAlpha = function() {
-			return remote.orientation.alpha - remote.oInit.alpha
+		remote.dAlpha = function() 
+		{
+			return degreeDelta(remote.orientation.alpha, remote.oInit.alpha)
 		}
 
-		remote.dBeta = function() {
-			return remote.orientation.beta - remote.oInit.beta
+		remote.dBeta = function() 
+		{
+			return degreeDelta(remote.orientation.beta, remote.oInit.beta)
 		}
 
-		remote.dGamma = function() {
-			return remote.orientation.gamma - remote.oInit.gamma
+		remote.dGamma = function() 
+		{
+			return degreeDelta(remote.orientation.gamma, remote.oInit.gamma)
+		}
+
+		function degreeDelta(angle, init)
+		{
+			//we don't want negative degrees
+			return (360 + angle - init) % 360
 		}
 
 		return remote;
