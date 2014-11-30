@@ -9,7 +9,7 @@
 				var renderer = new THREE.WebGLRenderer();
 				var camera = new THREE.PerspectiveCamera(
 					45, // view angle
-					1, // don't care, will be set at render time
+					1, // ratio : don't care, will be set at render time
 					0.1, // near
 					10); // far
 
@@ -17,8 +17,8 @@
 				var scene = new THREE.Scene();
 				scene.add(camera);
 
-				camera.position.z = 6;
-				
+				camera.position.z = 1.7;
+
 				// add three.js canvas to the page
 				elem.append(renderer.domElement);
 
@@ -89,13 +89,23 @@
 						path, 
 						function(geometry) 
 						{ 
-							// center the rotation pivot
-							THREE.GeometryUtils.center( geometry );
+							// scale the model to have a height and width max of 1
+							geometry.computeBoundingBox();
+							var bBox = geometry.boundingBox;
+							var scale = 1/(bBox.max.y-bBox.min.y)
+							
+							// center the rotation pivot and scale down to one unit high model
+							geometry.applyMatrix(
+								new THREE.Matrix4().makeTranslation(0, - (bBox.min.y + bBox.max.y)/2, 0))
+							geometry.applyMatrix(
+								new THREE.Matrix4().makeScale(scale, scale, scale));
+							
 
 							// the normal material gives a pretty nice effect
 							var objectMaterial = new THREE.MeshNormalMaterial(); 
 							
 							var mesh = new THREE.Mesh( geometry, objectMaterial ); 
+
 							scene.add(mesh);
 							render();
 							object = mesh;
