@@ -18,8 +18,7 @@
 				scene.add(camera);
 
 				camera.position.z = 6;
-				camera.position.y = 1.5;
-
+				
 				// add three.js canvas to the page
 				elem.append(renderer.domElement);
 
@@ -90,11 +89,13 @@
 						path, 
 						function(geometry) 
 						{ 
+							// center the rotation pivot
+							THREE.GeometryUtils.center( geometry );
+
 							// the normal material gives a pretty nice effect
 							var objectMaterial = new THREE.MeshNormalMaterial(); 
 							
 							var mesh = new THREE.Mesh( geometry, objectMaterial ); 
-
 							scene.add(mesh);
 							render();
 							object = mesh;
