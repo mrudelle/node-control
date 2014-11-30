@@ -51,33 +51,34 @@
 
 				attributes.$observe('alpha', function(value)
 				{
-					if(object)
-					{
-						object.rotation.y = Math.PI*value/180;
-						render()
-					}
+					requestAnimationFrame(render);
 				});
 
 				attributes.$observe('beta', function(value)
 				{
-					if(object)
-					{
-						object.rotation.x = Math.PI*value/180
-						render()
-					}
+					requestAnimationFrame(render);
 				});
 
 				attributes.$observe('gamma', function(value)
 				{
-					if(object)
-					{
-						object.rotation.z = -Math.PI*value/180
-						render()
-					}
+					requestAnimationFrame(render);
 				});
 
 				function render() 
 				{
+					if (object)
+					{
+						rotMat = new THREE.Matrix4();
+						rotX = new THREE.Matrix4().makeRotationX(Math.PI*attributes.beta/180);
+						rotY = new THREE.Matrix4().makeRotationY(Math.PI*attributes.alpha/180);
+						rotZ = new THREE.Matrix4().makeRotationZ(-Math.PI*attributes.gamma/180);
+
+						rotMat.multiplyMatrices( rotY, rotZ );
+						rotMat.multiply( rotX );
+
+						object.rotation.setFromRotationMatrix(rotMat);
+					}
+
 					// draw it !
 					renderer.render(scene, camera);
 				}
