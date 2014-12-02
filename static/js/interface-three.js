@@ -8,6 +8,7 @@
 		[
 			"/static/obj/bunny.js",
 			"/static/obj/teapot.js",
+			"/static/obj/dragon.js",
 			"/static/obj/suzanne.js"
 		]
 
