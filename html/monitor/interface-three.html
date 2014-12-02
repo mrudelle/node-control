@@ -36,16 +36,25 @@
 			display: none !important;
 		}
 
+		#next {
+			position: absolute;
+			bottom: 1em;
+			right: 1em;
+			z-index: 4;
+		}
+
 	</style>
 
 </head>
 <body ng-controller="appController as main">
 
-	<div id="canvas" three-model="/static/obj/teapot.js" alpha="{{monitor.orientation.alpha}}" beta="{{monitor.orientation.beta}}" gamma="{{monitor.orientation.gamma}}">
+	<div id="canvas" three-model="{{models[model]}}" alpha="{{monitor.orientation.alpha}}" beta="{{monitor.orientation.beta}}" gamma="{{monitor.orientation.gamma}}">
 
 	</div>
 
 	<div id="sid" class="well" ng-cloak>Session ID<br><label>{{monitor.sid}}</label></div>
+
+	<button id="next" ng-click="changeModel()">Next Model</button>
 	
 </body>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>

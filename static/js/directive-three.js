@@ -76,6 +76,9 @@
 						rotMat.multiply( rotX );
 
 						object.rotation.setFromRotationMatrix(rotMat);
+
+						// object.position.y = - Math.sin(object.rotation.x)/2;
+						// object.position.x = Math.sin(object.rotation.y)/2;
 					}
 
 					// draw it !
@@ -85,6 +88,9 @@
 				// load a new model in our view
 				function loadModel(path) 
 				{
+					// remove the previous model
+					scene.remove(object);
+
 					new THREE.JSONLoader().load(
 						path, 
 						function(geometry) 
