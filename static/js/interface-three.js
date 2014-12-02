@@ -16,9 +16,9 @@
 
 		$scope.monitor = MonitorService;
 
-		$scope.changeModel = function(){
+		$scope.changeModel = function()
+		{
 			$scope.model = ($scope.model + 1) % $scope.models.length;
-
 		}
 
 	}]);

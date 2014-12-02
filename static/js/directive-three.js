@@ -48,21 +48,6 @@
 					loadModel(value);
 				});
 
-				attributes.$observe('alpha', function(value)
-				{
-					requestAnimationFrame(render);
-				});
-
-				attributes.$observe('beta', function(value)
-				{
-					requestAnimationFrame(render);
-				});
-
-				attributes.$observe('gamma', function(value)
-				{
-					requestAnimationFrame(render);
-				});
-
 				function render() 
 				{
 					if (object)
@@ -88,8 +73,6 @@
 				// load a new model in our view
 				function loadModel(path) 
 				{
-					// remove the previous model
-					scene.remove(object);
 
 					new THREE.JSONLoader().load(
 						path, 
@@ -113,10 +96,40 @@
 							var mesh = new THREE.Mesh( geometry, objectMaterial ); 
 
 							scene.add(mesh);
-							render();
-							object = mesh;
+							
+							//animate the model switching
+							var tween = new TWEEN.Tween( { x: 0} )
+								.to( { x: -6 }, 1000 )
+								.easing( TWEEN.Easing.Cubic.Out )
+								.onUpdate( function () 
+								{
+									if(object)
+										object.position.x = this.x;
+									mesh.position.x = 6 + this.x;
+								} )
+								.onComplete( function() 
+								{
+									// remove the previous model
+									scene.remove(object);
+
+									object = mesh;
+								} )
+								.start();
 						}); 
 				}
+
+				// renders regularly the model
+				function animate()
+				{
+					requestAnimationFrame(animate);
+
+					TWEEN.update();
+
+					render();
+				}
+
+				// start the animation
+				animate();
 			}
 		}
 	)
