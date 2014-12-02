@@ -41,6 +41,17 @@
 			bottom: 1em;
 			right: 1em;
 			z-index: 4;
+			padding: 0 1em 0 2em;
+			color: rgb(205, 205, 205);
+		}
+
+		#next:hover {
+			color: rgb(181, 181, 181);
+		}
+
+		#next i {
+			line-height: 100vh;
+			font-size: 3em;
 		}
 
 	</style>
@@ -54,7 +65,7 @@
 
 	<div id="sid" class="well" ng-cloak>Session ID<br><label>{{monitor.sid}}</label></div>
 
-	<button id="next" ng-click="changeModel()">Next Model</button>
+	<div id="next" ng-click="changeModel()"><i class="glyphicon glyphicon-chevron-right"></i></div>
 	
 </body>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
