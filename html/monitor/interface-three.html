@@ -1,0 +1,85 @@
+<html ng-app="threeInterfaceApp">
+<head>
+
+	<title>Node Control - 3Dimensional Interface</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<style type="text/css">
+
+		#canvas 
+		{
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+
+		#sid {
+			position: absolute;
+			top: 1em;
+			right: 1em;
+			z-index: 4;
+			text-align: center;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.27);
+			border-radius: 0;
+		}
+
+		#sid label {
+			font-weight: bold;
+			font-size: 2em;
+			margin: 0;
+		}
+
+		[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+			display: none !important;
+		}
+
+		#next {
+			position: absolute;
+			bottom: 1em;
+			right: 1em;
+			z-index: 4;
+			padding: 0 1em 0 2em;
+			color: rgb(205, 205, 205);
+		}
+
+		#next:hover {
+			color: rgb(181, 181, 181);
+		}
+
+		#next i {
+			line-height: 100vh;
+			font-size: 3em;
+		}
+
+	</style>
+
+</head>
+<body ng-controller="appController as main">
+
+	<div id="canvas" three-model="{{models[model]}}" alpha="{{monitor.orientation.alpha}}" beta="{{monitor.orientation.beta}}" gamma="{{monitor.orientation.gamma}}">
+
+	</div>
+
+	<div id="sid" class="well" ng-cloak>Session ID<br><label>{{monitor.sid}}</label></div>
+
+	<div id="next" ng-click="changeModel()"><i class="glyphicon glyphicon-chevron-right"></i></div>
+	
+</body>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<!-- load the monitor angular service -->
+<script type="text/javascript" src="/static/js/monitor.js"></script>
+<script type="text/javascript" src="/static/js/directive-three.js"></script>
+<script type="text/javascript" src="/static/js/interface-three.js"></script>
+
+<!-- tween.js to add smooth movements -->
+<script src="/static/lib/tween.min.js"></script>
+<!-- get Jquery to manipulate dom elements -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- link to three.js -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
+
+</html>
