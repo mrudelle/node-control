@@ -104,7 +104,13 @@
 								.onUpdate( function () 
 								{
 									if(object)
-										object.position.x = this.x;
+									{
+										object.position.x = this.x
+										mesh.rotation.x = object.rotation.x
+										mesh.rotation.y = object.rotation.y
+										mesh.rotation.z = object.rotation.z
+									}
+										
 									mesh.position.x = 6 + this.x;
 								} )
 								.onComplete( function() 
