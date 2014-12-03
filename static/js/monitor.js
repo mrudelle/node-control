@@ -52,7 +52,6 @@
 						}
 
 						monitor.msg = "New orientation received";
-						console.log(monitor.orientation)
 					}
 					else
 					{
