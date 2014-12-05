@@ -6,6 +6,11 @@
 		
 		$scope.monitor = monitorService;
 
+		$scope.monitor.onCustomEvent(function (event)
+		{
+			console.log(event)
+		})
+
 	}]);
 
 })();

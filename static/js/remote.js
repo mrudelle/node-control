@@ -49,25 +49,35 @@
 			// send that new info to the server
 			if (diff > 0 && remote.sid != null)
 			{
-				$http.post('/control/' + remote.sid, 
-				{
+				remote.submitControl({
 					type: 'orientation',
 					alpha: remote.dAlpha(),
 					beta: remote.dBeta(),
-					gamma: remote.dGamma()})
-
-				.success(function(data, status, headers, config) 
-				{
-					remote.msg = "new orientation posted (" + status + ")"
-					remote.err = null
-				})
-				.error(function(data, status, headers, config) 
-				{
-					remote.err = status + " : " + data
-					remote.msg = null
-				});	
+					gamma: remote.dGamma()});
 			}
 		};
+
+		remote.newGeolocation = function() 
+		{
+			if (navigator.geolocation)
+			{
+				navigator.geolocation.getCurrentPosition( function(postion)
+				{
+					remote.submitControl({
+						type: "geolocalisation",
+						latitude: postion.coords.latitude,
+						longitude: postion.coords.longitude
+					})
+				}, function (error)
+				{
+					remote.err = "Geolocation error : " + error.code;
+				});
+			}
+			else
+			{
+				remote.err = "Your navigator do not support geolocation"
+			}
+		}
 
 		$window.addEventListener("deviceorientation", remote.newOrientation)
 
@@ -95,6 +105,23 @@
 		{
 			//we don't want negative degrees
 			return (360 + angle - init) % 360
+		}
+
+		// sends a dictionary (payload) of instruction to the server
+		// to be redirected to the monitor
+		remote.submitControl = function(payload) 
+		{
+			$http.post('/control/' + remote.sid, payload)
+			.success(function(data, status, headers, config) 
+			{
+				remote.msg = "new " + payload.type + "instruction sent (" + status + ")"
+				remote.err = null
+			})
+			.error(function(data, status, headers, config) 
+			{
+				remote.err = status + " : " + data
+				remote.msg = null
+			});
 		}
 
 		return remote;
