@@ -6,6 +6,7 @@
 		
 		$scope.monitor = monitorService;
 
+		// roughly Lausanne, Switzerland
 		$scope.lat = 46.508
 		$scope.lon = 6.553
 
@@ -13,8 +14,11 @@
 
 		$interval(function() 
 		{	
-			$scope.lat -= $scope.delta * Math.abs($scope.monitor.orientation.beta) * $scope.monitor.orientation.beta /(Math.pow(50,2))
-			$scope.lon += $scope.delta * Math.abs($scope.monitor.orientation.gamma) * $scope.monitor.orientation.gamma /(Math.pow(50,2))
+			var beta = adjustOrientation($scope.monitor.orientation.beta)
+			var gamma = adjustOrientation($scope.monitor.orientation.gamma)
+
+			$scope.lat -= $scope.delta * Math.abs(beta) * beta /(Math.pow(50,2))
+			$scope.lon += $scope.delta * Math.abs(gamma) * gamma /(Math.pow(50,2))
 		}, 100);
 
 		$scope.monitor.onCustomEvent(function (event)
@@ -30,6 +34,12 @@
 				console.log("uncaugth " + event.type + " instruction")
 			}
 		})
+
+		// change an angle from any range (eg. [0, 360]) to [-180, 180]
+		function adjustOrientation(angle)
+		{
+			return ((angle + 180*3) % 360) - 180
+		}
 
 	}]);
 
