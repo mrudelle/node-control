@@ -65,7 +65,7 @@
 					{
 						if (monitor.customEventListener)
 						{
-							customEventListener(event)
+							monitor.customEventListener(msg)
 						}
 						else
 						{

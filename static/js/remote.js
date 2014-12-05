@@ -57,6 +57,28 @@
 			}
 		};
 
+		remote.newGeolocation = function() 
+		{
+			if (navigator.geolocation)
+			{
+				navigator.geolocation.getCurrentPosition( function(postion)
+				{
+					remote.submitControl({
+						type: "geolocalisation",
+						latitude: postion.coords.latitude,
+						longitude: postion.coords.longitude
+					})
+				}, function (error)
+				{
+					remote.err = "Geolocation error : " + error.code;
+				});
+			}
+			else
+			{
+				remote.err = "Your navigator do not support geolocation"
+			}
+		}
+
 		$window.addEventListener("deviceorientation", remote.newOrientation)
 
 		remote.resetOrientation = function() 
