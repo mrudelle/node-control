@@ -15,6 +15,9 @@
 		remote.err = null
 		remote.sid = null
 
+		// geoloc
+		remote.geolocPending = false
+
 		remote.orientation = {
 			alpha: 0,
 			beta: 0,
@@ -61,6 +64,7 @@
 		{
 			if (navigator.geolocation)
 			{
+				remote.geolocPending = true
 				navigator.geolocation.getCurrentPosition( function(postion)
 				{
 					remote.submitControl({
@@ -68,9 +72,17 @@
 						latitude: postion.coords.latitude,
 						longitude: postion.coords.longitude
 					})
+					remote.geolocPending = false
 				}, function (error)
 				{
 					remote.err = "Geolocation error : " + error.code;
+					remote.geolocPending = false
+
+					// error.code can be:
+				    //   0: unknown error
+				    //   1: permission denied
+				    //   2: position unavailable (error response from locaton provider)
+				    //   3: timed out
 				});
 			}
 			else

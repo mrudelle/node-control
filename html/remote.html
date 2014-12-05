@@ -15,6 +15,7 @@
 	}
 
 	</style>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 <body ng-controller="appController as main">
@@ -61,7 +62,9 @@
 				</div>
 			</div>
 
-			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="remote.newGeolocation()">Send Geolocation</button>
+			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="remote.newGeolocation()" ng-disabled="remote.geolocPending">
+				Send Geolocation <i class="fa fa-refresh fa-spin" ng-show="remote.geolocPending"></i>
+			</button>
 			<button type="button" class="btn btn-default btn-lg btn-block" ng-click="remote.resetOrientation()">Reset Orientation</button>
 
 			<br>
