@@ -9,6 +9,10 @@
 		// roughly Lausanne, Switzerland
 		$scope.lat = 46.508
 		$scope.lon = 6.553
+		$scope.zoom = 10
+
+		// used to monitor burst in anle changes
+		var zoomState = 0
 
 		$scope.delta = 0.1;
 
@@ -16,9 +20,33 @@
 		{	
 			var beta = adjustOrientation($scope.monitor.orientation.beta)
 			var gamma = adjustOrientation($scope.monitor.orientation.gamma)
+			var alpha = adjustOrientation($scope.monitor.orientation.alpha)
 
-			$scope.lat -= $scope.delta * Math.abs(beta) * beta /(Math.pow(50,2))
-			$scope.lon += $scope.delta * Math.abs(gamma) * gamma /(Math.pow(50,2))
+			// update position only when directed trough the screen
+			if(alpha < 25 && alpha > -25)
+			{	
+				$scope.lat -= $scope.delta * Math.sign(beta) * Math.pow(Math.abs(beta),2.5) /(Math.pow(50,2.5))
+				$scope.lon += $scope.delta * Math.sign(gamma) * Math.pow(Math.abs(gamma),2.5) /(Math.pow(50,2.5))
+			}
+
+			// weird stuff to get an incremential zoom
+			if (alpha > 30)
+			{
+				if(zoomState != 1 && $scope.zoom < 30) 
+					$scope.zoom ++
+				zoomState = 1
+			}
+			else if (alpha < -30)
+			{
+				if(zoomState != -1 && $scope.zoom > 1) 
+					$scope.zoom --
+				zoomState = -1
+			}
+			else if ( alpha < 20 && alpha > -20)
+			{
+				zoomState = 0
+			}
+
 		}, 100);
 
 		$scope.monitor.onCustomEvent(function (event)

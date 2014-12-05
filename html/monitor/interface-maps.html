@@ -43,7 +43,7 @@
 </head>
 <body ng-controller="appController as main">
 
-	<google-map latitude="{{lat}}" longitude="{{lon}}" zoom="12" disableDefaultUI="true">
+	<google-map latitude="{{lat}}" longitude="{{lon}}" zoom="{{zoom}}" disableDefaultUI="true">
 	</google-map>
 
 	<div id="sid" class="well" ng-cloak>Session ID<br><label>{{monitor.sid}}</label></div>
