@@ -11,11 +11,25 @@
 
 		$scope.delta = 0.1;
 
-		$interval(function() {
-			
+		$interval(function() 
+		{	
 			$scope.lat -= $scope.delta * Math.abs($scope.monitor.orientation.beta) * $scope.monitor.orientation.beta /(Math.pow(50,2))
 			$scope.lon += $scope.delta * Math.abs($scope.monitor.orientation.gamma) * $scope.monitor.orientation.gamma /(Math.pow(50,2))
 		}, 100);
+
+		$scope.monitor.onCustomEvent(function (event)
+		{
+			if (event.type == "geolocation")
+			{
+				console.log("new geoloc " + event.latitude + " " + event.longitude)
+				$scope.lat = event.latitude
+				$scope.lon = event.longitude
+			}
+			else
+			{
+				console.log("uncaugth " + event.type + " instruction")
+			}
+		})
 
 	}]);
 

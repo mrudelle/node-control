@@ -64,7 +64,7 @@
 				navigator.geolocation.getCurrentPosition( function(postion)
 				{
 					remote.submitControl({
-						type: "geolocalisation",
+						type: "geolocation",
 						latitude: postion.coords.latitude,
 						longitude: postion.coords.longitude
 					})
