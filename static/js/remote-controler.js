@@ -27,6 +27,14 @@
 			document.getElementById("sid-field").focus();
 		}
 
+		$scope.testEvent = function()
+		{
+			$scope.remote.submitControl({
+				type:"hello world",
+				importance: "none"
+			})
+		}
+
 	}]);
 
 
