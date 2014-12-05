@@ -18,6 +18,14 @@
 
 		monitor.sid = null
 
+		// to be lauchned when instruction type is unkown
+		monitor.customEventListener = null
+
+		monitor.onCustomEvent = function(func)
+		{
+			monitor.customEventListener = func;
+		}
+
 		$http.get('/getsid').
 			success(function(data, status, headers, config) 
 			{
@@ -55,7 +63,14 @@
 					}
 					else
 					{
-						console.log("unknown control type received: " + msg.type);
+						if (monitor.customEventListener)
+						{
+							customEventListener(event)
+						}
+						else
+						{
+							console.log("uncaught control type received: " + msg.type);
+						}
 					}
 
 					$rootScope.$apply();
