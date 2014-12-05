@@ -21,9 +21,6 @@
 		<div class="alert alert-danger" ng-show="monitor.err">{{monitor.err}}</div> 
 
 		<p>alpha={{monitor.orientation.alpha}}°</p>
-		<p>{{((monitor.orientation.alpha+180)%360)/3.6}}</p>
-		<p>{{((monitor.orientation.alpha+180)%360)}}</p>
-		<p>{{(monitor.orientation.alpha+180)}}</p>
 		<div class="progress">
 		  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{((monitor.orientation.alpha+180)%360)/3.6}}" aria-valuemin="0" aria-valuemax="100" style="width: {{((monitor.orientation.alpha+180)%360)/3.6}}%">
 		    <span class="sr-only">{{(monitor.orientation.alpha)/3.6}}% Complete (success)</span>
