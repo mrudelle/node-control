@@ -14,7 +14,10 @@
 		// used to monitor burst in anle changes
 		var zoomState = 0
 
-		$scope.delta = 0.1;
+		// defines the shape of the move curve
+		var moveCurveShape = 2.5
+
+		$scope.delta = 102.4;
 
 		$interval(function() 
 		{	
@@ -25,8 +28,9 @@
 			// update position only when directed trough the screen
 			if(alpha < 25 && alpha > -25)
 			{	
-				$scope.lat -= $scope.delta * Math.sign(beta) * Math.pow(Math.abs(beta),2.5) /(Math.pow(50,2.5))
-				$scope.lon += $scope.delta * Math.sign(gamma) * Math.pow(Math.abs(gamma),2.5) /(Math.pow(50,2.5))
+				// pixel_coord = map_coord * 2^zoom_level
+				$scope.lat -= $scope.delta * Math.sign(beta) * Math.pow(Math.abs(beta),moveCurveShape) / (Math.pow(50,moveCurveShape)) / Math.pow(2, $scope.zoom) 
+				$scope.lon += $scope.delta * Math.sign(gamma) * Math.pow(Math.abs(gamma),moveCurveShape) / (Math.pow(50,moveCurveShape)) / Math.pow(2, $scope.zoom)
 			}
 
 			// weird stuff to get an incremential zoom
