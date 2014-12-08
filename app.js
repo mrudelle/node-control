@@ -41,6 +41,9 @@ app.get('/remote', function(req, res) {
 
 app.use('/monitor', express.static(path.join(__dirname, 'html', 'monitor')));
 
+// serve bower dependencies
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+
 app.use('/getsid', sidFactory);
 
 //controler will send their orders here
