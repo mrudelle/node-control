@@ -12,6 +12,8 @@
 			bottom: 0;
 			left: 0;
 			z-index: 0;
+			width: 100% !important;
+			height: auto !important;
 		}
 
 		#sid {
@@ -39,7 +41,7 @@
 <body ng-controller="appController as main">
 	<h1>Graph view</h1>
 
-	<div id="chart"></div>
+	<canvas id="chart"></canvas>
 	
 	<div id="sid" class="well" ng-cloak>Session ID<br><label>{{monitor.sid}}</label></div>
 </body>
@@ -52,6 +54,6 @@
 
 <!-- Jquery and Highcharts for animated charts -->
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript" src="http://www.chartjs.org/assets/Chart.min.js"></script>
 
 </html>
