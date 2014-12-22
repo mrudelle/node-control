@@ -123,6 +123,9 @@
 		// to be redirected to the monitor
 		remote.submitControl = function(payload) 
 		{
+			//append current time
+			payload.time = new Date().getTime()
+
 			$http.post('/control/' + remote.sid, payload)
 			.success(function(data, status, headers, config) 
 			{
