@@ -78,7 +78,10 @@
 				responsive: true,
 				animation: false,
 				animationSteps: 2,
-				bezierCurve: false
+				bezierCurve: false,
+				maintainAspectRatio: false,
+				showTooltips: false,
+				showScale: true,
 			});
 
 	}]);
