@@ -1,0 +1,64 @@
+<html ng-app="graphInterfaceApp">
+<head>
+	<title>Node Control - Graph Monitor</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<style type="text/css">
+		#chart {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 0;
+			width: 100% !important;
+			height: auto !important;
+		}
+
+		h1 {
+			z-index: 2;
+			padding: 1em 2em;
+		}
+
+		#sid {
+			position: absolute;
+			top: 1em;
+			right: 1em;
+			z-index: 4;
+			text-align: center;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.27);
+			border-radius: 0;
+		}
+
+		#sid label {
+			font-weight: bold;
+			font-size: 2em;
+			margin: 0;
+		}
+
+		[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+		  display: none !important;
+		}
+	</style>
+
+</head>
+<body ng-controller="appController as main">
+	<h1>Graph view</h1>
+
+	<canvas id="chart"></canvas>
+	
+	<div id="sid" class="well" ng-cloak>Session ID<br><label>{{monitor.sid}}</label></div>
+</body>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+
+<!-- load the monitor angular service -->
+<script type="text/javascript" src="/static/js/monitor.js"></script>
+<script type="text/javascript" src="/static/js/interface-graph.js"></script>
+
+<!-- Jquery and Highcharts for animated charts -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.chartjs.org/assets/Chart.min.js"></script>
+
+</html>

@@ -26,6 +26,15 @@
 			monitor.customEventListener = func;
 		}
 
+		// to be launched whenever an instruction is received 
+		// (used to override instruction handling)
+		monitor.eventListener = null
+
+		monitor.onEvent = function(func)
+		{
+			monitor.eventListener = func;
+		}
+
 		$http.get('/getsid').
 			success(function(data, status, headers, config) 
 			{
@@ -71,6 +80,11 @@
 						{
 							console.log("uncaught control type received: " + msg.type);
 						}
+					}
+
+					if (monitor.eventListener)
+					{
+						monitor.eventListener(msg)
 					}
 
 					$rootScope.$apply();
