@@ -4,97 +4,81 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="/static/stylesheets/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
-	<style type="text/css">
-
-		.container {
-			text-align: center;
-		}
-
-		#or {
-			font-size: 2em;
-			color: gray;
-			padding: 1.5em 0 1.5em 0;
-			margin: 0;
-		}
-
-		.fa {
-			margin-bottom: 0.3em;
-		}
-
-		ul {
-			padding: 0.5em 1em 0.5em 1em;
-			margin: 0;
-		}
-
-		li {
-			padding: 0;
-		}
-
-		.polaroid {
-			/*box-shadow: 0 1px 1.5px rgba(0, 0, 0, 0.16);*/
-			/*border: 1px solid rgb(175, 215, 175);;*/
-			background-color: rgb(223, 240, 216);
-			padding: 1em;
-			margin: 15px 0;
-			color: rgb(60, 118, 61);
-		}
-
-	</style>
 </head>
 	<body ng-controller="appController as main">
 
+		<div class="title1">
+			<div class="container">
+				<h1>Remote control</h1>
+			</div>
+		</div>
+		<div class="title2">
+			<div class="container">
+				<h2>Interract with your browser from your phone</h2>
+			</div>
+		</div>
 		<div class="container">
 
-			<h1>Remote Control with Node.js</h1>
-
-			<br>
+			<br><br>
+			<h3>
+				<span class="fa-stack fa-lg pin">
+					<i class="fa fa-circle fa-stack-2x pin-circle"></i>
+					<i class="fa fa-mobile fa-stack-1x fa-inverse"></i>
+				</span>
+				 If you are on a mobile device:
+			</h3>
 			
-			<a href="remote/" class="btn btn-lg btn-success btn-block">
-				<i class="fa fa-gamepad fa-2x"></i>
-				<br>
-				be the REMOTE
+			<a href="remote/">
+				<div class="plate">
+					<label>
+						<i class="fa fa-gamepad fa-2x"></i><br>I Am The Remote
+					</label>
+				</div>
 			</a>
 			
-			<p id="or">- or -</p>
+			<br><br>
 
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<i class="fa fa-desktop fa-2x"></i>
-					<br>
-					be the MONITOR
-				</div>
-				<div class="panel-body">
-					<ul class="row">
-						<li class="col-xs-6 col-sm-3">
-							<div class="polaroid">
-								<i class="fa fa-map-marker fa-2x"></i>
-								<br>
-								<a href="monitor/interface-maps.html">Maps</a>
-							</div>
-						</li>
-						<li class="col-xs-6 col-sm-3">
-							<div class="polaroid">
-								<i class="fa fa-wrench fa-2x"></i>
-								<br>
-								<a href="monitor/interface-bars.html">Bars</a>
-							</div>
-						</li>
+			<h3>
+				<span class="fa-stack fa-lg pin">
+					<i class="fa fa-circle fa-stack-2x pin-circle"></i>
+					<i class="fa fa-desktop fa-stack-1x fa-inverse" style="font-size: 0.70em; line-height: 3em;"></i>
+				</span>
+				 On a monitor - Select an app:
+			</h3>
+			<ul class="row">
+				<li class="col-xs-6 col-sm-3">
+					<a href="monitor/interface-maps.html">
+						<div class="plate polaroid">
+							<label>
+								<i class="fa fa-map-marker fa-2x"></i><br>Maps
+							</label>
+						</div>
+					</a>
+				</li>
+				<li class="col-xs-6 col-sm-3">
+					<a href="monitor/interface-bars.html">
+						<div class="plate polaroid">
+							<label>
+								<i class="fa fa-wrench fa-2x"></i><br>Bars
+							</label>
+						</div>
+					</a>
+				</li>
 
-						<li class="col-xs-6 col-sm-3">
-							<div class="polaroid">
-								<i class="fa fa-cubes fa-2x"></i>
-								<br>
-								<a href="monitor/interface-three.html">3D<small>imensions</small></a>
-							</div>
-						</li>
-
-					</ul>	
-				</div>
-			</div>
-
+				<li class="col-xs-6 col-sm-3">
+					<a href="monitor/interface-three.html">
+						<div class="plate polaroid">
+							<label>
+								<i class="fa fa-cubes fa-2x"></i><br>3D<small>imensions</small>
+							</label>
+						</div>
+					</a>
+				</li>
+			</ul>	
 		</div>
-
 	</body>
 	<!-- 
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
