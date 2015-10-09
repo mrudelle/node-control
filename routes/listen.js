@@ -16,7 +16,7 @@ router.get('/:sid', function(req, res) {
 	}
 
 	// let request last as long as possible
-	req.socket.setTimeout(Infinity);
+	req.socket.setTimeout(0);
 
 	// creates the envent callback to contact the slave
 	slave = new EventEmitter();
