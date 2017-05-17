@@ -3,6 +3,8 @@ node-control
 
 A node.js server to connect two devices
 
+Live preview: http://remote.mrudelle.com (visit on both devices) 
+
 
 # How to run locally
 
