@@ -4,6 +4,11 @@ var router = express.Router();
 /* Return an unused session ID */
 router.get('/', function(req, res) {
 
+	// Temporarily allow anyone to register TODO: select origins
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
 	// create a random session ID with alphanumeric values
 	function generator()
 	{
@@ -30,10 +35,6 @@ router.get('/', function(req, res) {
 		sid = generator();
 
 	console.log(req.headers.host)
-
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
 	res.status(200);
 	res.end(sid);

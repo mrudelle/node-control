@@ -4,6 +4,11 @@ var router = express.Router();
 /* New values posted */
 router.post('/:sid', function(req, res) {
 	
+	// Temporarily allow anyone to register TODO: select origins
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
 
 	//trigger a new orientation event to the target session
 	target = req.app.locals.slave[req.params.sid]
