@@ -29,6 +29,12 @@ router.get('/', function(req, res) {
 	while(req.app.locals.slave[sid] != null)
 		sid = generator();
 
+	console.log(req.headers.host)
+
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
 	res.status(200);
 	res.end(sid);
 
