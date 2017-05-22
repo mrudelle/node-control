@@ -16,3 +16,12 @@ Live preview: http://remote.mrudelle.com (visit on both devices)
 # Depenencies
 
 
+# Deploy
+
+```
+$ git add .
+$ git commit -am "la la la la"
+$ git push heroku master
+```
+
+
