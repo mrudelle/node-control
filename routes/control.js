@@ -9,7 +9,6 @@ router.post('/:sid', function(req, res) {
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-
 	//trigger a new orientation event to the target session
 	target = req.app.locals.slave[req.params.sid]
 	if (target != null)
@@ -23,6 +22,7 @@ router.post('/:sid', function(req, res) {
 		return
 	}
 
+	res.status(200)
 	res.end('It worked');
 });
 

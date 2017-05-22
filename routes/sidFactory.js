@@ -12,9 +12,9 @@ router.get('/', function(req, res) {
 	// create a random session ID with alphanumeric values
 	function generator()
 	{
-		var range = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		var range = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
 		var sid = '';
-		var length = 6;
+		var length = 5;
 
 		// it's faster to type only letters from a mobile
 		if (req.app.get('env') === 'development') 
