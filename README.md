@@ -10,7 +10,7 @@ Live preview: https://remote.mrudelle.com (visit on both devices)
 
 * Install nodejs
 * Run ´npm install´ to install dependencies
-* Run ´npm ./bin/www´ to start the server 
+* Run ´node ./bin/www´ to start the server 
 * Go to ´localhost:3000/´ or whatever port you specified
 
 # Depenencies
